@@ -1,0 +1,13 @@
+# Node
+admostay-web/node_modules
+admostay-web/npm-debug.log
+admostay-web/yarn-error.log
+admostay-web/.angular/
+admostay-web/.vscode/
+
+
+# Ionic
+admostay-web/.ionic
+admostay-web/www
+admostay-web/platforms
+admostay-web/plugins

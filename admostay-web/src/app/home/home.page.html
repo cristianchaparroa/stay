@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="center">
+      Stay
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="center auth-form">
+  <ion-grid [fixed]="true">
+    <ion-card>
+      <img src="assets/img/stay-home.jpg" />
+      <ion-card-header>
+         <ion-card-subtitle>Stay management</ion-card-subtitle>
+       </ion-card-header>
+    </ion-card>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button [routerLink]="['/registration']" expand="block" color="primary">Register</ion-button>
+        <span class="divider line one-line">or</span>
+        <span class="already">Already a user?</span>
+        <ion-button [routerLink]="['/login']" expand="block" color="danger">Sign In</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
