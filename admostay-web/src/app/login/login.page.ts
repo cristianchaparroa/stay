@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import {AuthenticationService} from "../services/authentication-service";
+import { FirebaseErrorService } from "../services/firebase-errors"
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  credentials = {
+    email: "",
+    password: ""
   }
 
+  showErrors : boolean = false;
+  error: string = "";
+
+  constructor(
+    public authService: AuthenticationService,
+    public firebaseErrorService: FirebaseErrorService,
+    public router: Router
+  ) { }
+
+  ngOnInit() {}
+
+  logIn() {
+    this.authService.SignIn(this.credentials.email, this.credentials.password)
+      .then( (res) => {
+        console.log(res)
+        this.router.navigate(['dashboard']);
+      }).catch((error) => {
+        console.log(error)
+        this.error = this.firebaseErrorService.GetAuthError(error)
+        this.showErrors = true
+      })
+  }
 }

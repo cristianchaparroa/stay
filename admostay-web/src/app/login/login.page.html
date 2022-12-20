@@ -11,20 +11,43 @@
     <ion-grid [fixed]="true">
         <ion-item lines="full">
           <ion-label position="floating">Email</ion-label>
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            name="email"
+            [(ngModel)]="credentials.email"
+            type="text"
+            required></ion-input>
         </ion-item>
 
         <ion-item lines="full">
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" required></ion-input>
+          <ion-input
+            name="password"
+            [(ngModel)]="credentials.password"
+            type="password" #password required></ion-input>
         </ion-item>
 
         <ion-row>
           <ion-col class="center">
-            <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
+            <ion-button
+              type="submit"
+              color="danger"
+              (click)="logIn()"
+              expand="block">Sign In</ion-button>
             <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
           </ion-col>
         </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="validation-errors">
+              <div class="error-message" *ngIf="showErrors">
+                <span>{{ error }}</span>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+
     </ion-grid>
   </form>
 </ion-content>
