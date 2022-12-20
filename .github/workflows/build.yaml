@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
+          cache-dependency-path: ./admostay-web/package-lock.json
       - name: Install Dependencies
         run: npm install
       - name: Build
