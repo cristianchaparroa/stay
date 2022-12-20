@@ -11,3 +11,5 @@ admostay-web/.ionic
 admostay-web/www
 admostay-web/platforms
 admostay-web/plugins
+
+.idea/
