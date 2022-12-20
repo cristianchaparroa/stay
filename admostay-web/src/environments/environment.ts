@@ -4,15 +4,6 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyB9QO01D80_2TrGcl-ImU8DTfLqO8bi9wk",
-    authDomain: "stay-5c81e.firebaseapp.com",
-    projectId: "stay-5c81e",
-    storageBucket: "stay-5c81e.appspot.com",
-    messagingSenderId: "126343230844",
-    appId: "1:126343230844:web:ff7c679c1b003d397660f9",
-    databaseURL: "https://stay-5c81e-default-rtdb.firebaseio.com",
-  }
 };
 
 /*
