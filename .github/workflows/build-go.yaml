@@ -48,3 +48,22 @@ jobs:
 
     - name: Build
       run: go build -v ./...
+
+    - name: Install golangci-lint
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
+    - name: Fetch
+      run: |
+        git fetch
+    - name: Run golangci-lint
+      run: |
+        $(go env GOPATH)/bin/golangci-lint run  --config configs/.golangci.yaml --issues-exit-code=0 --out-format=json --new-from-rev=origin/master --timeout=3m > lint.json
+        jq '[.Issues[] | {path: .Pos.Filename, start_line: .Pos.Line, end_line: .Pos.Line, start_column: .Pos.Column, end_column: .Pos.Column , title: .FromLinter, message: .Text, raw_details: .Text, "annotation_level": "failure"}]' lint.json > ./annotations.json
+        cat ./annotations.json
+
+    - name: Annotate
+      uses: yuzutech/annotations-action@v0.3.0
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        input: ./annotations.json
+

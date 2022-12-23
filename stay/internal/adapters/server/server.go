@@ -20,4 +20,3 @@ func New(conf *app.Config) *Server {
 func (s *Server) Run() {
 	s.e.Start(fmt.Sprintf(":%d", s.config.Port))
 }
-
