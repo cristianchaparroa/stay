@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-    c := app.NewAppConfig(8080)
-    s :=  server.New(c) 
-    s.Run()
+	c := app.NewAppConfig(8080)
+	s := server.New(c)
+	s.Run()
 }
