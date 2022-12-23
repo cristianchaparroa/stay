@@ -1,9 +1,13 @@
-name: Build
+name: NPM build
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - 'admostay-web/**'
   push:
     branches: [ main ]
+    paths:
+      - 'admostay-web/**'
 
 jobs:
   build:
