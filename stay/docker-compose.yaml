@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  mysqldb:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: stay
+      MYSQL_DATABASE: stay
+    ports:
+      - 3306:3306

@@ -12,7 +12,7 @@ type UserRole string
 
 // User represent a user in the system
 type User struct {
-	UID  string
-	Name string
-	Role UserRole
+	UID   string
+	Names string
+	Role  UserRole
 }

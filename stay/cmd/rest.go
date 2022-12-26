@@ -1,12 +1,45 @@
 package main
 
 import (
-	"stay/internal/adapters/server"
-	"stay/internal/app"
+	"fmt"
+	"github.com/joho/godotenv"
+	"stay/core/app"
+	"stay/core/datasources/sql"
+	"stay/core/server"
+	"stay/internal/adapters/handlers"
+	"stay/internal/adapters/repositories"
+	"stay/internal/domain"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("error loading .env file")
+		return
+	}
+
 	c := app.NewAppConfig(8080)
-	s := server.New(c)
+
+	conn, err := sql.NewMySQLConnection()
+	if err != nil {
+		fmt.Printf("%v", err)
+		return
+	}
+
+	userReader := repositories.NewUserReader(conn)
+	propertyReader := repositories.NewPropertyReader(conn)
+	propertyWriter := repositories.NewPropertyWriter(conn)
+
+	propertyUseCase := domain.NewPropertyUseCase(
+		userReader,
+		propertyWriter,
+		propertyReader,
+	)
+
+	hs := []server.Handler{
+		handlers.NewProperties(propertyUseCase),
+	}
+
+	s := server.New(c, hs)
 	s.Run()
 }
