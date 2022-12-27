@@ -16,6 +16,17 @@ func NewProperties(c ports.PropertyUseCase) server.Handler {
 	return &Properties{useCase: c}
 }
 
+// Create It will add a new property associated with a specific user
+//	@Summary		creates a property
+//	@Description	Create will add a new property associated to specific user
+//	@ID				users-properties-create
+//	@Accept			json
+//	@Produce		json
+//	@Router			/users/properties [post]
+//	@Param			body	body		propertyRequest	true	"This is the property information to create"
+//	@Success		201		{object}	ports.Property
+//	@Failure		400		{object}	core.Error
+//	@Failure		422		{object}	core.Error
 func (h *Properties) Create(c echo.Context) error {
 	req, errReq := NewPropertyCreateRequest(c)
 	if errReq != nil {
@@ -31,6 +42,17 @@ func (h *Properties) Create(c echo.Context) error {
 	return c.JSON(http.StatusCreated, p)
 }
 
+// GetAll will retrieve all the properties associated to specific user
+//	@Summary		gets all properties
+//	@Description	It will retrieve all properties associated to specific user
+//	@ID				users-properties-get-all
+//	@Accept			json
+//	@Produce		json
+//	@Router			/users/{uid}/properties [get]
+//	@Param			uid	path		string	true	"User UID"
+//	@Success		201	{object}	ports.Property
+//	@Failure		400	{object}	core.Error
+//	@Failure		422	{object}	core.Error
 func (h *Properties) GetAll(c echo.Context) error {
 	req, errReq := NewPropertyGetAllRequest(c)
 	if errReq != nil {
@@ -48,6 +70,18 @@ func (h *Properties) GetAll(c echo.Context) error {
 	return c.JSON(http.StatusOK, response)
 }
 
+// GetByID get a specific property associated to one user.
+//	@Summary		gets a property by id
+//	@Description	It gets a specific property associated to one user.
+//	@ID				users-properties-get-by-id
+//	@Accept			json
+//	@Produce		json
+//	@Router			/users/{uid}/properties/{id} [get]
+//	@Param			uid	path		string	true	"User UID"
+//	@Param			id	query		string	true	"Property ID"
+//	@Success		201	{object}	ports.Property
+//	@Failure		400	{object}	core.Error
+//	@Failure		422	{object}	core.Error
 func (h *Properties) GetByID(c echo.Context) error {
 	req, errReq := NewPropertyGetByIDRequest(c)
 	if errReq != nil {

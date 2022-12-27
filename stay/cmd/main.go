@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/joho/godotenv"
+	_ "stay/cmd/docs"
 	"stay/core/app"
 	"stay/core/datasources/sql"
 	"stay/core/server"
@@ -11,6 +12,9 @@ import (
 	"stay/internal/domain"
 )
 
+//	@title			Stay API documentation
+//	@version		1.0
+//	@description	It contains of the stay api documentation
 func main() {
 	err := godotenv.Load()
 	if err != nil {

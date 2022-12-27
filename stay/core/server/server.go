@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/swaggo/echo-swagger"
 	"stay/core/app"
 )
 
@@ -23,8 +24,16 @@ func New(conf *app.Config, handlers []Handler) *Server {
 		endpoints = append(endpoints, es...)
 	}
 
+	// TODO: this shows the Swagger documentation
+	// modify the server configuration to allow
+	// or disable it by configuration
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
+
 	for _, endpoint := range endpoints {
-		e.Add(endpoint.GetMethod(), endpoint.GetPath(), endpoint.GetHandlerFunc())
+		e.Add(
+			endpoint.GetMethod(),
+			endpoint.GetPath(),
+			endpoint.GetHandlerFunc())
 	}
 	// TODO: this shows the register endpoints
 	// 	modify to allow or disable by config
