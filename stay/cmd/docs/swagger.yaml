@@ -1,0 +1,157 @@
+definitions:
+  core.Error:
+    properties:
+      invalid-params:
+        description: |-
+          InvalidParams is used when a request needs a
+          params and those are missing
+        items:
+          $ref: '#/definitions/core.ParamError'
+        type: array
+      message:
+        description: Message error
+        type: string
+      status:
+        description: Status code
+        type: integer
+    type: object
+  core.ParamError:
+    properties:
+      name:
+        description: Name of the field with issues
+        type: string
+      reason:
+        description: Reason why the field has an issue
+        type: string
+    type: object
+  handlers.propertyRequest:
+    properties:
+      address:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      rooms:
+        type: integer
+      type:
+        type: string
+      user_uid:
+        type: string
+    type: object
+  ports.Property:
+    properties:
+      address:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      rooms:
+        type: integer
+      typ:
+        type: string
+      userUID:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: It contains of the stay api documentation
+  title: Stay API documentation
+  version: "1.0"
+paths:
+  /users/{uid}/properties:
+    get:
+      consumes:
+      - application/json
+      description: It will retrieve all properties associated to specific user
+      operationId: users-properties-get-all
+      parameters:
+      - description: User UID
+        in: path
+        name: uid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/ports.Property'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/core.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/core.Error'
+      summary: gets all properties
+  /users/{uid}/properties/{id}:
+    get:
+      consumes:
+      - application/json
+      description: It gets a specific property associated to one user.
+      operationId: users-properties-get-by-id
+      parameters:
+      - description: User UID
+        in: path
+        name: uid
+        required: true
+        type: string
+      - description: Property ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/ports.Property'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/core.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/core.Error'
+      summary: gets a property by id
+  /users/properties:
+    post:
+      consumes:
+      - application/json
+      description: Create will add a new property associated to specific user
+      operationId: users-properties-create
+      parameters:
+      - description: This is the property information to create
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.propertyRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/ports.Property'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/core.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/core.Error'
+      summary: creates a property
+swagger: "2.0"

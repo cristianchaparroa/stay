@@ -1,0 +1,13 @@
+Table users {
+  uid varchar [pk]
+}
+
+Table properties {
+  id varchar [pk]
+  name varchar
+  description varchar
+  address varchar
+  typ varchar
+  user_uid varchar [ref: > users.uid] // many-to-one
+  rooms numeric
+}

@@ -1,0 +1,233 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "It contains of the stay api documentation",
+        "title": "Stay API documentation",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/users/properties": {
+            "post": {
+                "description": "Create will add a new property associated to specific user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "creates a property",
+                "operationId": "users-properties-create",
+                "parameters": [
+                    {
+                        "description": "This is the property information to create",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handlers.propertyRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/ports.Property"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/core.Error"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/core.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{uid}/properties": {
+            "get": {
+                "description": "It will retrieve all properties associated to specific user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "gets all properties",
+                "operationId": "users-properties-get-all",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User UID",
+                        "name": "uid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/ports.Property"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/core.Error"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/core.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{uid}/properties/{id}": {
+            "get": {
+                "description": "It gets a specific property associated to one user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "gets a property by id",
+                "operationId": "users-properties-get-by-id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User UID",
+                        "name": "uid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Property ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/ports.Property"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/core.Error"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/core.Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "core.Error": {
+            "type": "object",
+            "properties": {
+                "invalid-params": {
+                    "description": "InvalidParams is used when a request needs a\nparams and those are missing",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/core.ParamError"
+                    }
+                },
+                "message": {
+                    "description": "Message error",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Status code",
+                    "type": "integer"
+                }
+            }
+        },
+        "core.ParamError": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Name of the field with issues",
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "Reason why the field has an issue",
+                    "type": "string"
+                }
+            }
+        },
+        "handlers.propertyRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rooms": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "user_uid": {
+                    "type": "string"
+                }
+            }
+        },
+        "ports.Property": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rooms": {
+                    "type": "integer"
+                },
+                "typ": {
+                    "type": "string"
+                },
+                "userUID": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

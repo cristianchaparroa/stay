@@ -13,3 +13,5 @@ admostay-web/platforms
 admostay-web/plugins
 
 .idea/
+
+*.DS_Store
