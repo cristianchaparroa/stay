@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+
+    <ion-title>New Property</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-grid [fixed]="true">
+
+      <ion-item lines="full">
+        <ion-label position="floating">name</ion-label>
+        <ion-input
+          name="name"
+          [(ngModel)]="property.name"
+          type="text"
+          required></ion-input>
+        <ion-note slot="helper">Property name</ion-note>
+        <ion-note slot="error">Invalid Property name</ion-note>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">description</ion-label>
+        <ion-input
+          name="description"
+          [(ngModel)]="property.description"
+          type="text"
+          required></ion-input>
+        <ion-note slot="helper">Property description</ion-note>
+        <ion-note slot="error">Invalid Property description</ion-note>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">address</ion-label>
+        <ion-input
+          name="address"
+          [(ngModel)]="property.address"
+          type="text"
+          required></ion-input>
+        <ion-note slot="helper">Property address</ion-note>
+        <ion-note slot="error">Invalid Property address</ion-note>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">type</ion-label>
+        <ion-input
+          name="type"
+          [(ngModel)]="property.type"
+          type="text"
+          required></ion-input>
+        <ion-note slot="helper">Property type</ion-note>
+        <ion-note slot="error">Invalid Property type</ion-note>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">rooms</ion-label>
+        <ion-input
+          name="rooms"
+          [(ngModel)]="property.rooms"
+          type="number"
+          required></ion-input>
+        <ion-note slot="helper">Property rooms</ion-note>
+        <ion-note slot="error">Invalid Property rooms</ion-note>
+      </ion-item>
+
+      <ion-row>
+        <ion-col class="center">
+          <ion-button
+            type="submit"
+            color="success"
+            (click)="create()"
+            expand="block">Create</ion-button>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+  </form>
+</ion-content>

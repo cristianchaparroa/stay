@@ -40,6 +40,10 @@ const routes: Routes = [
     loadChildren: () => import('./properties/properties.module').then( m => m.PropertiesPageModule),
     canActivate: [AngularFireAuth],
     data: {authGuardPipe: redirectUnauthorizedTo}
+  },
+  {
+    path: 'create-property',
+    loadChildren: () => import('./create-property/create-property.module').then( m => m.CreatePropertyPageModule)
   }
 ];
 
