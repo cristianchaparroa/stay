@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {PropertiesService} from '../core/services/properties-service'
+import {LocalUserService} from "../core/services/user-local";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() { }
+  properties: any = []
+  constructor( public router: Router,
+               private propertiesService:PropertiesService,
+              private localUser:LocalUserService) { }
 
   ngOnInit() {
+    this.getAllProperties()
   }
 
+  getAllProperties(): void {
+    const user = this.localUser.getCurrentUser()
+    let uid = ""
+    if (user?.uid) {
+      uid = user?.uid
+    }
+
+    this.propertiesService.getAllProperties(uid).subscribe(properties => {
+      this.properties = properties
+    })
+  }
 }

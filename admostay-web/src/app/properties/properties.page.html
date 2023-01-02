@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Properties</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let p of properties">
+    <ion-card-content>
+      <h2><b>Name: </b>{{p.name}}</h2>
+      <p><b>Description: </b>{{p.description}}</p>
+      <p><b>Address: </b>{{p.address}}</p>
+      <ion-label>Type:</ion-label> <ion-label color="secondary"><b> {{p.type}}</b></ion-label>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="success">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

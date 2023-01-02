@@ -1,9 +1,16 @@
-<ion-header>
+<ion-header xmlns="http://www.w3.org/1999/html">
   <ion-toolbar>
-    <ion-title>dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div class="ripple-wrapper">
+     <div [routerLink]="['/properties']" class="ion-activatable ripple-parent custom-parent">
+       <ion-icon  class="left-icon" name="home-outline"></ion-icon> Show my properties
+       <ion-ripple-effect></ion-ripple-effect>
+     </div>
+  </div>
 
 </ion-content>

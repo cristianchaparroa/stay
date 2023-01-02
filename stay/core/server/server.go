@@ -29,12 +29,6 @@ func New(conf *app.Config, handlers []Handler) *Server {
 	// or disable it by configuration
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
-	for _, endpoint := range endpoints {
-		e.Add(
-			endpoint.GetMethod(),
-			endpoint.GetPath(),
-			endpoint.GetHandlerFunc())
-	}
 	// TODO: this shows the register endpoints
 	// 	modify to allow or disable by config
 	data, _ := json.MarshalIndent(e.Routes(), "", "  ")
@@ -42,6 +36,14 @@ func New(conf *app.Config, handlers []Handler) *Server {
 
 	// TODO: modify this to receive middlewares as parameters
 	e.Use(middleware.Logger())
+	e.Use(middleware.CORS())
+
+	for _, endpoint := range endpoints {
+		e.Add(
+			endpoint.GetMethod(),
+			endpoint.GetPath(),
+			endpoint.GetHandlerFunc())
+	}
 
 	return &Server{
 		e:        e,
