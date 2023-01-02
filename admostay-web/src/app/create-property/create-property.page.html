@@ -17,10 +17,10 @@
         <ion-label position="floating">name</ion-label>
         <ion-input
           name="name"
+          placeholder="Property name"
           [(ngModel)]="property.name"
           type="text"
           required></ion-input>
-        <ion-note slot="helper">Property name</ion-note>
         <ion-note slot="error">Invalid Property name</ion-note>
       </ion-item>
 
@@ -28,10 +28,10 @@
         <ion-label position="floating">description</ion-label>
         <ion-input
           name="description"
+          placeholder="Property description"
           [(ngModel)]="property.description"
           type="text"
           required></ion-input>
-        <ion-note slot="helper">Property description</ion-note>
         <ion-note slot="error">Invalid Property description</ion-note>
       </ion-item>
 
@@ -39,10 +39,10 @@
         <ion-label position="floating">address</ion-label>
         <ion-input
           name="address"
+          placeholder="Property address"
           [(ngModel)]="property.address"
           type="text"
           required></ion-input>
-        <ion-note slot="helper">Property address</ion-note>
         <ion-note slot="error">Invalid Property address</ion-note>
       </ion-item>
 
@@ -50,10 +50,10 @@
         <ion-label position="floating">type</ion-label>
         <ion-input
           name="type"
+          placeholder="Property type"
           [(ngModel)]="property.type"
           type="text"
           required></ion-input>
-        <ion-note slot="helper">Property type</ion-note>
         <ion-note slot="error">Invalid Property type</ion-note>
       </ion-item>
 
@@ -61,10 +61,10 @@
         <ion-label position="floating">rooms</ion-label>
         <ion-input
           name="rooms"
+          placeholder="Property rooms"
           [(ngModel)]="property.rooms"
           type="number"
           required></ion-input>
-        <ion-note slot="helper">Property rooms</ion-note>
         <ion-note slot="error">Invalid Property rooms</ion-note>
       </ion-item>
 
@@ -77,8 +77,6 @@
             expand="block">Create</ion-button>
         </ion-col>
       </ion-row>
-
-
     </ion-grid>
   </form>
 </ion-content>

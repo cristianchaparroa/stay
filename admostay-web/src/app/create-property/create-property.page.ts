@@ -8,6 +8,10 @@ import { ModalController } from '@ionic/angular';
 })
 export class CreatePropertyPage  {
 
+  /**
+   * Property model object that will contain the information to
+   * request.
+   * */
   property = {
     name: "",
     description: "",
@@ -31,6 +35,4 @@ export class CreatePropertyPage  {
   create() {
 
   }
-
-  confirm() {}
 }
