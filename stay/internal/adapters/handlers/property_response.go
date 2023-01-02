@@ -24,16 +24,12 @@ func NewPropertyResponse(p *ports.Property) *PropertyResponse {
 	}
 }
 
-type PropertyListResponse struct {
-	List []*PropertyResponse `json:"properties"`
-}
-
-func NewPropertyListResponse(list []*ports.Property) *PropertyListResponse {
+func NewPropertyListResponse(list []*ports.Property) []*PropertyResponse {
 	response := make([]*PropertyResponse, 0)
 
 	for _, p := range list {
 		response = append(response, NewPropertyResponse(p))
 	}
 
-	return &PropertyListResponse{List: response}
+	return response
 }

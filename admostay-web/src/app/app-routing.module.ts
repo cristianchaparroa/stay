@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {redirectUnauthorizedTo} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
   {
@@ -29,7 +31,15 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    canActivate: [AngularFireAuth],
+    data: {authGuardPipe: redirectUnauthorizedTo}
+  },
+  {
+    path: 'properties',
+    loadChildren: () => import('./properties/properties.module').then( m => m.PropertiesPageModule),
+    canActivate: [AngularFireAuth],
+    data: {authGuardPipe: redirectUnauthorizedTo}
   }
 ];
 

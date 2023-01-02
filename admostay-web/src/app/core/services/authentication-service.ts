@@ -1,6 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
 import * as auth from 'firebase/auth';
-import { User } from './user';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
@@ -8,6 +7,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat';
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root',
@@ -25,11 +25,7 @@ export class AuthenticationService {
     this.ngFireAuth.authState.subscribe((userResponse) => {
       if (userResponse) {
         this.userData = userResponse;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        const user = localStorage.getItem('user');
-        if (user) {
-          JSON.parse(user);
-        }
+        localStorage.setItem('user',  JSON.stringify(this.userData));
       } else {
         localStorage.removeItem('user');
       }
@@ -72,15 +68,6 @@ export class AuthenticationService {
       });
   }
 
-  // Returns true when user is looged in
-  get isLoggedIn(): boolean {
-    const userStored = localStorage.getItem('user')
-    if (userStored) {
-      const user = JSON.parse(userStored);
-      return user !== null && user.emailVerified !== false ? true : false;
-    }
-    return false
-  }
 
   // Returns true when user's email is verified
   get isEmailVerified(): boolean {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { AuthenticationService } from "../services/authentication-service";
-import { FirebaseErrorService } from "../services/firebase-errors"
+import { AuthenticationService } from "../core/services/authentication-service";
+import { FirebaseErrorService } from "../core/services/firebase-errors"
 
 @Component({
   selector: 'app-registration',
