@@ -16,15 +16,15 @@ export class PropertiesPage implements OnInit {
    * */
   properties: any = []
 
-
-
   /**
    * @param propertiesService
    * @param localUser
    * */
   constructor(private propertiesService:PropertiesService,
               private localUser:LocalUserService,
-              private modalController: ModalController) { }
+              private modalController: ModalController) {
+    this.ngOnInit()
+  }
 
   ngOnInit() {
     this.getAllProperties()
@@ -49,6 +49,11 @@ export class PropertiesPage implements OnInit {
     });
 
     await modal.present();
+    const { role } = await modal.onWillDismiss();
+    if (role === "ok") {
+      this.getAllProperties();
+    }
   }
+
 
 }

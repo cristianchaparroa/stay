@@ -49,9 +49,9 @@
       <ion-item lines="full">
         <ion-label position="floating">type</ion-label>
         <ion-input
-          name="type"
-          placeholder="Property type"
-          [(ngModel)]="property.type"
+          name="typ"
+          placeholder="Property typ"
+          [(ngModel)]="property.typ"
           type="text"
           required></ion-input>
         <ion-note slot="error">Invalid Property type</ion-note>
@@ -77,6 +77,17 @@
             expand="block">Create</ion-button>
         </ion-col>
       </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <div class="validation-errors">
+            <div class="error-message" *ngIf="showErrors">
+              <span>{{ error }}</span>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
     </ion-grid>
   </form>
 </ion-content>
