@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <form>
+  <form (ngSubmit)="create()"  #createForm="ngForm">
     <ion-grid [fixed]="true">
 
       <ion-item lines="full">
@@ -71,9 +71,9 @@
       <ion-row>
         <ion-col class="center">
           <ion-button
-            type="submit"
             color="success"
-            (click)="create()"
+            type="submit" class="btn btn-success"
+            [disabled]="!createForm.form.valid"
             expand="block">Create</ion-button>
         </ion-col>
       </ion-row>

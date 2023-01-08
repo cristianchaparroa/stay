@@ -13,7 +13,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./create-property.page.scss'],
 })
 export class CreatePropertyPage  {
-
   /**
    * Property model object that will contain the information to
    * request.
@@ -27,6 +26,7 @@ export class CreatePropertyPage  {
     rooms: 0,
   }
 
+  submitted = false;
   /**
    * The show errors is a flag that will be in true
    * it there are errors on the creation process.
@@ -63,6 +63,7 @@ export class CreatePropertyPage  {
         next: (property) => this.handleResponse(property),
         error: (e) => this.handleErrors(e)
       })
+    this.submitted = true;
   }
 
   async handleResponse(p:Property) {
