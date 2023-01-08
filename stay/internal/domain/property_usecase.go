@@ -45,3 +45,13 @@ func (c *propertyUseCase) Save(p *ports.Property) (*ports.Property, error) {
 
 	return c.writer.Save(p)
 }
+
+func (c *propertyUseCase) Delete(uid, id string) error {
+	_, err := c.userReader.GetUser(uid)
+	if err != nil {
+		return errors.New(errUserNotFound)
+	}
+
+	return c.writer.Delete(id)
+}
+

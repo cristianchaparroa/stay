@@ -90,10 +90,36 @@ func (h *Properties) GetByID(c echo.Context) error {
 
 	p, err := h.useCase.GetProperty(req.UID, req.ID)
 	if err != nil {
-		return c.JSON(http.StatusUnprocessableEntity, nil)
+		return c.JSON(http.StatusUnprocessableEntity, err)
 	}
 
 	return c.JSON(http.StatusOK, NewPropertyResponse(p))
+}
+
+// DeleteByID delete a property.
+//	@Summary		deletes a property
+//	@Description	It deletes a property
+//	@ID				users-properties-delete
+//	@Accept			json
+//	@Produce		json
+//	@Router			/users/{uid}/properties/{id} [get]
+//	@Param			uid	path		string	true	"User UID"
+//	@Param			id	query		string	true	"Property ID"
+//	@Success		200	{object}	ports.Property
+//	@Failure		400	{object}	core.Error
+//	@Failure		422	{object}	core.Error
+func (h *Properties) DeleteByID(c echo.Context) error {
+	req, errReq := NewPropertyGetByIDRequest(c)
+	if errReq != nil {
+		return c.JSON(errReq.Status, errReq)
+	}
+
+	err := h.useCase.Delete(req.UID, req.ID)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, nil)
+	}
+
+	return c.JSON(http.StatusOK, nil)
 }
 
 func (h *Properties) GetEndpoints() []server.Endpoint {
@@ -101,5 +127,6 @@ func (h *Properties) GetEndpoints() []server.Endpoint {
 		server.NewEndpoint(h.GetAll, http.MethodGet, "/users/:uid/properties"),
 		server.NewEndpoint(h.GetByID, http.MethodGet, "/users/:uid/properties/:id"),
 		server.NewEndpoint(h.Create, http.MethodPost, "/users/properties"),
+		server.NewEndpoint(h.DeleteByID, http.MethodDelete, "/users/:uid/properties/:id"),
 	}
 }
