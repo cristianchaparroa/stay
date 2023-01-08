@@ -44,6 +44,10 @@ const routes: Routes = [
   {
     path: 'create-property',
     loadChildren: () => import('./create-property/create-property.module').then( m => m.CreatePropertyPageModule)
+  },
+  {
+    path: 'property-detail',
+    loadChildren: () => import('./property-detail/property-detail.module').then( m => m.PropertyDetailPageModule)
   }
 ];
 

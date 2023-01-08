@@ -20,12 +20,7 @@ export class DashboardPage implements OnInit {
   }
 
   getAllProperties(): void {
-    const user = this.localUser.getCurrentUser()
-    let uid = ""
-    if (user?.uid) {
-      uid = user?.uid
-    }
-
+    const  uid = this.localUser.getCurrentUserUID()
     this.propertiesService.getAllProperties(uid).subscribe(properties => {
       this.properties = properties
     })

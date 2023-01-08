@@ -11,11 +11,11 @@
 
 <ion-content>
   <ion-card *ngFor="let p of properties">
-    <ion-card-content>
+    <ion-card-content  (click)="showDetail(p)" >
       <h2><b>Name: </b>{{p.name}}</h2>
       <p><b>Description: </b>{{p.description}}</p>
       <p><b>Address: </b>{{p.address}}</p>
-      <ion-badge color="secondary" slot="start">{{p.type}}</ion-badge>
+      <ion-badge color="secondary" slot="start">{{p.typ}}</ion-badge>
     </ion-card-content>
   </ion-card>
 
