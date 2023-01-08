@@ -32,4 +32,15 @@ export class PropertiesService extends BaseService {
     const options = {headers: this.getBaseHeaders()};
     return this.http.post<Property>(`${environment.apiURL}/users/properties`, property, options);
   }
+
+  /**
+   * It will delete a user property
+   *
+   * @param uid user identification
+   * @param id property to delete
+   * */
+  deleteProperty(uid:string, id:string) {
+    const options = {headers: this.getBaseHeaders()};
+    return this.http.delete<Property[]>(`${environment.apiURL}/users/${uid}/properties/${id}`, options);
+  }
 }

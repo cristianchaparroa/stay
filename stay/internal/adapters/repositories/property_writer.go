@@ -23,3 +23,12 @@ func (w *propertyWriter) Save(p *ports.Property) (*ports.Property, error) {
 	}
 	return property.ToDomain(), nil
 }
+
+func (w *propertyWriter) Delete(id string) error {
+	tx := w.db.Where("id = ?", id).Delete(&Property{})
+
+	if tx.Error != nil {
+		return tx.Error
+	}
+	return nil
+}

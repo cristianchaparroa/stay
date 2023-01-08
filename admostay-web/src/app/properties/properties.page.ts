@@ -66,8 +66,9 @@ export class PropertiesPage implements OnInit {
     })
 
     await  modal.present();
+    const { role } = await modal.onWillDismiss();
+    if (role === "ok") {
+      this.getAllProperties();
+    }
   }
-
-
-
 }
