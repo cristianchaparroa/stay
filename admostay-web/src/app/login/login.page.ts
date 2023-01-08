@@ -29,10 +29,8 @@ export class LoginPage implements OnInit {
   logIn() {
     this.authService.SignIn(this.credentials.email, this.credentials.password)
       .then( (res) => {
-        console.error(res)
         this.router.navigate(['dashboard']);
       }).catch((error) => {
-        console.log(error)
         this.error = this.firebaseErrorService.GetAuthError(error)
         this.showErrors = true
       })

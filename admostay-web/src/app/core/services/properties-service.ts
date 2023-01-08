@@ -1,20 +1,35 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {Property} from "../models/property";
+import {BaseService} from "./base-service";
 
 @Injectable({
   providedIn: 'root',
 })
-export class PropertiesService {
+export class PropertiesService extends BaseService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
 
+  /**
+   * It will retrieve all user properties
+   *
+   * @param uid user identifier
+   * */
   getAllProperties(uid:string) {
-    const headers = new HttpHeaders()
-    headers.set('Content-Type', 'application/json');
-    const options = {headers: headers};
+    const options = {headers: this.getBaseHeaders()};
     return this.http.get<Property[]>(`${environment.apiURL}/users/${uid}/properties`, options);
   }
 
+  /**
+   * It will add a new user property
+   *
+   * @param property body request to create
+   * */
+  createProperty(property:Property) {
+    const options = {headers: this.getBaseHeaders()};
+    return this.http.post<Property>(`${environment.apiURL}/users/properties`, property, options);
+  }
 }

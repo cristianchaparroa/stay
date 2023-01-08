@@ -1,8 +1,9 @@
 export interface Property {
   id?: string,
-  uid: string,
+  user_uid: string,
   name:string,
   description: string,
   address: string,
-  typ: string
+  typ: string,
+  rooms: number,
 }

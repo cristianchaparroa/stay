@@ -15,13 +15,15 @@
       <h2><b>Name: </b>{{p.name}}</h2>
       <p><b>Description: </b>{{p.description}}</p>
       <p><b>Address: </b>{{p.address}}</p>
-      <ion-label>Type:</ion-label> <ion-label color="secondary"><b> {{p.type}}</b></ion-label>
+      <ion-badge color="secondary" slot="start">{{p.type}}</ion-badge>
     </ion-card-content>
   </ion-card>
 
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button color="success">
+    <ion-fab-button
+      (click)="showCreateModal()"
+      color="success">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
