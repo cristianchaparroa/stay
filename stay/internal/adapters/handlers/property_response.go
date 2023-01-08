@@ -8,7 +8,7 @@ type PropertyResponse struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Address     string `json:"address"`
-	Typ         string `json:"type"`
+	Typ         string `json:"typ"`
 	Rooms       int    `json:"rooms"`
 }
 

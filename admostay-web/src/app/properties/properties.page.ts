@@ -3,6 +3,8 @@ import {PropertiesService} from "../core/services/properties-service";
 import {LocalUserService} from "../core/services/user-local";
 import { ModalController } from '@ionic/angular';
 import {CreatePropertyPage} from "../create-property/create-property.page";
+import {Property} from "../core/models/property";
+import {PropertyDetailPage} from "../property-detail/property-detail.page";
 
 @Component({
   selector: 'app-properties',
@@ -54,6 +56,18 @@ export class PropertiesPage implements OnInit {
       this.getAllProperties();
     }
   }
+
+  async showDetail(p:Property) {
+    const modal = await this.modalController.create({
+      component:PropertyDetailPage,
+      componentProps: {
+        property:p,
+      }
+    })
+
+    await  modal.present();
+  }
+
 
 
 }

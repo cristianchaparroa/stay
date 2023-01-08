@@ -18,6 +18,7 @@ export class CreatePropertyPage  {
    * request.
    * */
   property:Property = {
+    id: "",
     user_uid:  "",
     name: "",
     description: "",
